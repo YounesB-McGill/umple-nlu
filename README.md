@@ -1,4 +1,4 @@
-# Cognitive Car Dashboard Application powered by Conversation and NLU
+# UmpleOnline Chatbot Application powered by Assistant, NLU and Watson Knoledge Studio
 
 This application demonstrates how to integrate [Natural Language Understanding](https://www.ibm.com/watson/developercloud/natural-language-understanding.html) (NLU) service with [Watson Conversation](https://www.ibm.com/watson/developercloud/conversation.html) service to extract generic entities and pass those to the Conversation service.
 This application is an extension of the [Conversation Simple](https://github.com/watson-developer-cloud/conversation-simple) application where it adds integration to another Watson service, namely NLU as well as a third party API, namely [Weather Underground API](https://www.wunderground.com/weather/api/).
@@ -13,16 +13,17 @@ For more information about NLU, see the [detailed documentation](https://www.ibm
 ## How the app works
 The app interface is designed and trained for chatting with a cognitive car. The chat interface is on the left, and the JSON that the JavaScript code receives from the server is on the right. Your questions and commands are run against a small set of sample data trained with intents like these:
 
-    turn_on
-    weather
-    capabilities
+    create_class
+    create_composition
+    create_inheritance 
 
 These intents help the system to understand variations of questions and commands that you might submit.
 
 Example commands that can be executed by the Conversation service are:
 
-    turn on windshield wipers
-    play music
+    create a class
+    create a composition
+    create an inheritance
 
 If you say *"Wipers on"* or *"I want to turn on the windshield wipers"*, the system
 understands that in both cases your intent is the same and responds accordingly.
@@ -42,7 +43,7 @@ Open a terminal on your machine and execute the following commands:
 ```sh
 1.  mkdir convapp
 2.  cd convapp
-3.  git clone https://github.com/joe4k/conversation-nlu.git
+3.  git clone https://github.com/rizvi-m/umple-nlu.git
 4.  cd conversation-nlu
 5.  npm Install  ==> installs node packages defined in package.json
 6.  cp .env.example .env  ==> we define service credentials in .env file
