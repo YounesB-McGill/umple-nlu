@@ -121,7 +121,7 @@ app.post( '/api/message', function(req, res) {
   }
 
   if(params == null) {
-   params = {text: "input",features:features}
+   params = {text: "hello, how can you?",features:features}
   }
 
 
@@ -178,6 +178,59 @@ if (partList.length > 0) {
 } else {
  payload.context.varPart = null;
 }
+
+//Parent
+
+var parentList = entities.map(function(entry) {
+  if(entry.type == "parent_ent") {
+    return(entry.text);
+   //if(entry.disambiguation && entry.disambiguation.subtype) {
+     //if(entry.disambiguation.subtype.indexOf("USState") > -1 || entry.disambiguation.subtype.indexOf("StateOrCounty") > -1) {
+      //return(entry.text);
+     //}
+   //}
+  }
+        });
+  
+  parentList = parentList.filter(function(entry) {
+  if(entry != null) {
+   return(entry);
+  }
+  });
+  if (parentList.length > 0) {
+   payload.context.varParent = parentList[0];
+  } else {
+   payload.context.varParent = null;
+  }
+
+
+
+//Child
+
+var childList = entities.map(function(entry) {
+  if(entry.type == "child_ent") {
+    return(entry.text);
+   //if(entry.disambiguation && entry.disambiguation.subtype) {
+     //if(entry.disambiguation.subtype.indexOf("USState") > -1 || entry.disambiguation.subtype.indexOf("StateOrCounty") > -1) {
+      //return(entry.text);
+     //}
+   //}
+  }
+        });
+  
+  childList = childList.filter(function(entry) {
+  if(entry != null) {
+   return(entry);
+  }
+  });
+  if (childList.length > 0) {
+   payload.context.varChild = childList[0];
+  } else {
+   payload.context.varChild = null;
+  }
+
+
+
     } else {
 if(payload.context.varContainer) {
 payload.context.varContainer = null;
@@ -185,6 +238,12 @@ payload.context.varContainer = null;
 if(payload.context.varPart) {
 payload.context.varPart = null;
 }
+if(payload.context.varChid) {
+  payload.context.varChild = null;
+  }
+if(payload.context.varParent) {
+  payload.context.varParent = null;
+  }
 console.log('response from NLU entity extraction is null');
     }
 // Send the input to the conversation service
